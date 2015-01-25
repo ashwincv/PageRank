@@ -1,0 +1,4 @@
+PageRank calculation in Python - For CSE 6240 - Spring 2015 - Ashwin Cunnapakkam Vinjimur
+
+
+Code uses the formula with the damping factor ( = 0.85) to calculate PageRank. Individually calculate outdegrees for all the nodes, maintain a separate list for incoming edges for each node. Initialized PageRank values to 1/N, where N = Number of nodes/pages. Perform iterations until convergence. Convergence tested by seeing if equal to previous iteration upto 12 decimal places.

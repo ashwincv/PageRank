@@ -1,0 +1,8 @@
+README for PageRank Implementation in Python - Ashwin Cunnapakkam Vinjimur - Spring 2015
+
+
+1) To run the program, in the terminal
+		$ python Pr.py <input-file> <output-file>
+
+Make sure input file is in the same directory as PR.py, Output file is created in the same directory.
+Output file has PageRanks of nodes line by line, starting from node 1.
