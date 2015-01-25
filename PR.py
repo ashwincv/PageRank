@@ -25,7 +25,7 @@ alpha = 0.85
 ''' 
 	Open input file for reading(provided in the same directory)
 '''
-input_file = open("hw2-sample-input",'r')
+input_file = open(inputf,'r')
 
 
 
@@ -38,9 +38,10 @@ input_file = open("hw2-sample-input",'r')
 	@edges = number of edges
 	@space = variable to be discarded, takes the space character
 '''
-nodes = int(input_file.read(1))
-space = input_file.read(1)
-edges = int(input_file.read(1))
+temp = input_file.readline()
+temp_list = temp.split()
+nodes = int(temp_list[0])
+edges = int(temp_list[1])
 
 
 
@@ -69,8 +70,7 @@ for i in range(1,nodes+1):
 	pagerank.append(temp) 
 	 
 
-#Buffer Line
-input_file.readline()
+
 
 
 '''
@@ -80,15 +80,17 @@ input_file.readline()
 '''
 for j in range(edges):
 	temp = input_file.readline()
-	out.append(int(temp[0]))
-	if int(temp[2]) not in adj_list.keys():
+	listtemp = temp.split()
+	
+	out.append(int(listtemp[0]))
+	if int(listtemp[1]) not in adj_list.keys():
 		temp_list = []
-		temp_list.append(int(temp[0]))
-		adj_list[int(temp[2])] = temp_list
+		temp_list.append(int(listtemp[0]))
+		adj_list[int(listtemp[1])] = temp_list
 	else:
-		temp_list = adj_list[int(temp[2])]
-		temp_list.append(int(temp[0])) 
-		adj_list[int(temp[2])] = temp_list
+		temp_list = adj_list[int(listtemp[1])]
+		temp_list.append(int(listtemp[0])) 
+		adj_list[int(listtemp[1])] = temp_list
 
 
 '''
@@ -147,7 +149,7 @@ while check<=2:
 			pagerank[v-1] = float(1- alpha)/int(nodes)						#Constant Factor
 			for g in adj_list[v]:
 				pagerank[v-1]+=(alpha*(pagerank[g-1]/outbound_links[g-1]))
-		print round(pagerank[0],5),round(temp1,5)
+		
 		if round(pagerank[0],12)==round(temp1,12):                           #Checking if values have converged
 			check+=1
 		
@@ -156,7 +158,7 @@ while check<=2:
 '''
 	Writing in output file
 '''
-output = open("output.txt",'w')
+output = open(outputf,'w')
 
 for a in pagerank:
 	output.write(str(a)+"\n")
